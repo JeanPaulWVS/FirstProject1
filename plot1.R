@@ -1,0 +1,12 @@
+###########
+### Plot 1
+###########
+electric <- "C:\\Users\\jeanpaulwvs\\Desktop\\household_power_consumption.txt"
+electric <- read.table(electric, header=TRUE, sep=";", stringsAsFactors=FALSE, dec=".")
+electric <- electric[electric$Date %in% c("1/2/2007","2/2/2007") ,]
+electric$Date <- as.Date(electric$Date, format = "%d/%m/%Y")
+
+electric$Global_active_power <- as.numeric(electric$Global_active_power)
+png("plot1.png", width=480, height=480)
+hist(electric$Global_active_power, col="red", main="Global Active Power", xlab="Global Active Power (kilowatts)")
+dev.off()
